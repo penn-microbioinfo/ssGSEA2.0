@@ -3,19 +3,21 @@
 input_gct=$1
 db=$2
 output_prefix=$3
+ncores=8
 
 Rscript /home/ec2-user/ssGSEA2.0/ssgsea-cli.R \
-	-i $input_gct \
-	-o $output_prefix \
-	-n rank \
-	-w 0.75 \
-	-c "z.score" \
-	-t "area.under.RES" \
-	-s NES \
-	-p 100000 \
-	-m 5 \
-	-d $db \
-	-e TRUE \
-	-x TRUE \
-	-g TRUE \
-	-l TRUE
+	--input $input_gct \
+	--output $output_prefix \
+	--norm rank \
+	--weight 0.75 \
+	--correl "z.score" \
+	--test "area.under.RES" \
+	--score NES \
+	--perm 100000 \
+	--minoverlap 5 \
+	--db $db \
+	--export TRUE \
+	--extendedoutput TRUE \
+	--globalfdr TRUE \
+	--lightspeed TRUE \
+        --cores $ncores

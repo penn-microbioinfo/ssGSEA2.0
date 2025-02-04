@@ -26,6 +26,7 @@ option_list <- list(
   make_option( c("-m", "--minoverlap"), action='store', type='character',  dest='min_overlap', help='Minimal overlap between signature and data set.', default = 10),
   make_option( c("-q", "--tolerate_min_overlap_error"), action='store', type='logical', dest='tolerate_min_overlap_error', help='Boolean to allow ssGSEA2() to tolerate input_ds having < min_overlap with gene_set_databases, without propogating error to shell.', default=FALSE),
   make_option( c("-x", "--extendedoutput"), action='store', type='character',  dest='extended_output', help='If TRUE additional stats on signature coverage etc. will be included as row annotations in the GCT results files.', default = TRUE),
+  make_option( c("--sparecores"), action='store', type='numeric',  dest='sparecores', help="Number of cores to leave unused. Default = 0, all available cores", default = 0),
   make_option( c("-e", "--export"), action='store', type='character',  dest='export_signat_gct', help='For each signature export expression GCT files.', default = TRUE),
   make_option( c("-g", "--globalfdr"), action='store', type='character',  dest='global_fdr', help='If TRUE global FDR across all data columns is calculated.', default = FALSE),
   make_option( c("-l", "--lightspeed"), action='store', type='character',  dest='multi_core', help='If TRUE processing will be parallized across gene sets. (I ran out of single letters to define parameters...)', default = TRUE),
@@ -44,8 +45,10 @@ source(file.path(script.dir, 'src', 'parse_yaml_ssgsea.R'))
 # parse command line parameters
 opt <- parse_param_ssgsea(option_list) # reparse args with our special yaml overwrite function
 
+# Set number of cores to use. Default to all available cores with cores = 0.
+spare.cores <- opt$sparecores
+
 # hard-coded parameters
-spare.cores <- 0 # use all available cpus
 log.file <- paste(opt$output_prefix, '_ssgsea.log.txt', sep='')
 
 

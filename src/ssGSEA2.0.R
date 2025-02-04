@@ -184,8 +184,7 @@ ssGSEA2 <- function (
           ########################################################
           ## display a more detailed error message if the import 
           ## failed due to other reasons than redundant 'rid'
-            stop("\n\nError importing GCT file using 'cmapR::parse.gctx()'. Possible reasons:\n\n1) Please check whether you have the latest version of the 'cmapR' installed. Due to submission to Bioconductor the cmap team changed some naming conventions, e.g 'parse.gctx()' has been renamed to 'parse.gctx()'.\n2) The GCT file doesn't seem to be in the correct format! Please see take a look at https://clue.io/connectopedia/gct_format for details about GCT format.
-\nError message returned by 'cmapR::parse.gctx()':\n\n", dataset, '\n\n')
+            stop("\n\nError importing GCT file using 'cmapR::parse.gctx()'. Possible reasons:\n\n1) Please check whether you have the latest version of the 'cmapR' installed. Due to submission to Bioconductor the cmap team changed some naming conventions, e.g 'parse.gctx()' has been renamed to 'parse.gctx()'.\n2) The GCT file doesn't seem to be in the correct format! Please see take a look at https://clue.io/connectopedia/gct_format for details about GCT format.\n\nError message returned by 'cmapR::parse.gctx()':\n\n", dataset, '\n\n')
           } 
     } #end if try-error
     m.org <- m
